@@ -18,42 +18,12 @@ public class PlayerLook : MonoBehaviour
     
     // Variable to store the clamp value for the X axis rotation
     private float xAxisClamp;
-    
-    // Flag to check if the cursor is locked
-    private bool m_cursorIsLocked = true;
 
     private void Awake()
     {
-        // Lock the cursor on start
-        LockCursor();
         xAxisClamp = 0.0f;
     }
 
-    private void LockCursor()
-    {
-        // Check if the F1 key is released and lock the cursor
-        if (Input.GetKeyUp(KeyCode.F1))
-        {
-            m_cursorIsLocked = false;
-        }
-        // Check if the left mouse button is released and unlock the cursor
-        else if (Input.GetMouseButtonUp(0))
-        {
-            m_cursorIsLocked = true;
-        }
-
-        // Set the cursor lock state and visibility based on the flag
-        if (m_cursorIsLocked)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else if (!m_cursorIsLocked)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-    }
 
     private void Update()
     {
